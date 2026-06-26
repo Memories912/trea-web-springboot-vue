@@ -3,12 +3,15 @@
 // framer-motion removed
 import Link from 'next/link'
 import { useT } from '@/i18n'
+import useGsapPage from '@/gsap/useGsapPage'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ParticleBackground from '@/components/ParticleBackground'
+import dynamic from 'next/dynamic'
+const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), { ssr: false })
 
 export default function ProductsPage() {
   const { t } = useT()
+  useGsapPage()
 
   const categories = [
     { slug: 'apparel', icon: '👕', name: t('catSelect.apparel'), desc: t('catDesc.apparel') },
@@ -42,16 +45,14 @@ export default function ProductsPage() {
         <section className="section-padding relative overflow-hidden">
           <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-gradient-to-br from-[#b8860b]/10 via-[#b8860b]/5 to-[#2c6e6e]/10 rounded-full blur-[120px]" />
           <div className="section-container relative z-10">
-            <div>
-              <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#b8860b] transition-colors mb-6">
-                {t('nav.backHome')}
+            <div className="page-hero-badge">
+              <Link href="/" className="back-home-link">
+                <span className="arrow">←</span>
+                <span>返回主页</span>
               </Link>
             </div>
             <div 
-             
-             
-             
-              className="max-w-3xl"
+              className="page-hero-title max-w-3xl"
             >
               <div className="inline-flex items-center gap-2 glass-light rounded-full px-4 py-2 mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#b8860b] animate-pulse" />
@@ -74,10 +75,7 @@ export default function ProductsPage() {
               {categories.map((cat, i) => (
                 <div 
                   key={cat.slug}
-                 
-                 
-                 
-                 
+                  className="page-card"
                 >
                   <Link href={`/products/${cat.slug}`}
                     className="block glass-card rounded-xl p-5 hover:border-[#b8860b]/30 transition-all group"

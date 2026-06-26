@@ -6,20 +6,15 @@ import { useT } from '@/i18n'
 import { useContact } from '@/components/ContactModal'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ParticleBackground from '@/components/ParticleBackground'
+import dynamicImport from 'next/dynamic'
+const ParticleBackground = dynamicImport(() => import('@/components/ParticleBackground'), { ssr: false })
+import useGsapPage from '@/gsap/useGsapPage'
 
 export const dynamic = 'force-static'
 
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-}
-
-const stagger = (i: number) => ({ transition: { delay: i * 0.08 } })
-
 export default function PlansPage() {
   const { t } = useT()
+  useGsapPage()
   const { open: openContact } = useContact()
 
   const faqs = [
@@ -38,16 +33,13 @@ export default function PlansPage() {
         <section className="section-padding relative overflow-hidden">
           <div className="absolute top-0 left-1/3 w-[700px] h-[700px] bg-gradient-to-br from-[#b8860b]/10 via-[#b8860b]/5 to-[#2c6e6e]/5 rounded-full blur-[120px]" />
           <div className="section-container relative z-10">
-            <div {...fadeUp}>
-              <Link href="/" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#b8860b] transition-colors mb-6">
-                {t('nav.backHome')}
+            <div className="page-hero-badge">
+              <Link href="/" className="back-home-link">
+                <span className="arrow">←</span>
+                <span>返回主页</span>
               </Link>
             </div>
-            <div 
-             
-             
-              className="text-center"
-            >
+            <div className="page-hero-title text-center">
               <h1 className="text-4xl md:text-6xl font-extrabold gradient-text mb-6">
                 {t('plansPage.heroTitle')}
               </h1>
@@ -67,7 +59,7 @@ export default function PlansPage() {
         <section id="compare" className="section-padding relative">
           <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-[#2c6e6e]/5 rounded-full blur-[100px]" />
           <div className="section-container relative z-10">
-            <div {...fadeUp} className="text-center mb-14">
+            <div className="text-center mb-14">
               <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#b8860b] uppercase mb-4">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 {t('plansPage.compareTitle')}
@@ -83,13 +75,7 @@ export default function PlansPage() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {/* Basic Card */}
-              <div 
-               
-               
-               
-               
-                className="glass-card flowing-card rounded-2xl p-8 md:p-10 relative overflow-hidden flex flex-col"
-              >
+              <div className="page-card glass-card flowing-card rounded-2xl p-8 md:p-10 relative overflow-hidden flex flex-col">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#2c6e6e]/5 rounded-full blur-[60px]" />
                 <div className="relative z-10 flex flex-col flex-1">
                   <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 bg-white/10 text-gray-600">
@@ -119,13 +105,7 @@ export default function PlansPage() {
               </div>
 
               {/* Pro Card - Featured */}
-              <div 
-               
-               
-               
-               
-                className="flowing-card rounded-2xl p-8 md:p-10 relative overflow-hidden bg-gradient-to-br from-[#b8860b]/10 via-[#2c6e6e]/5 to-transparent border border-[#b8860b]/20 flex flex-col"
-              >
+              <div className="page-card flowing-card rounded-2xl p-8 md:p-10 relative overflow-hidden bg-gradient-to-br from-[#b8860b]/10 via-[#2c6e6e]/5 to-transparent border border-[#b8860b]/20 flex flex-col">
                 <div className="absolute top-0 right-0 w-40 h-40 bg-[#b8860b]/10 rounded-full blur-[80px]" />
                 <div className="relative z-10 flex flex-col flex-1">
                   <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-4 bg-gradient-to-r from-[#b8860b] to-[#9a7209] text-foreground">
@@ -161,18 +141,13 @@ export default function PlansPage() {
         <section className="section-padding relative">
           <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-[#2c6e6e]/5 rounded-full blur-[100px]" />
           <div className="section-container relative z-10">
-            <div {...fadeUp} className="text-center mb-12">
+            <div className="text-center mb-12">
               <h2 className="text-2xl md:text-4xl font-extrabold gradient-text mb-4">
                 {t('plansPage.compareTitle')}
               </h2>
             </div>
 
-            <div 
-             
-             
-             
-              className="max-w-4xl mx-auto overflow-x-auto"
-            >
+            <div className="page-card max-w-4xl mx-auto overflow-x-auto">
               <table className="w-full text-sm text-left">
                 <thead>
                   <tr>
@@ -218,12 +193,7 @@ export default function PlansPage() {
         {/* ─── CTA Section ─── */}
         <section className="section-padding relative">
           <div className="section-container">
-            <div 
-             
-             
-             
-              className="flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/8 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto"
-            >
+            <div className="page-cta flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/8 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-4xl font-extrabold gradient-text mb-4">
                 {t('plansPage.ctaTitle')}
               </h2>
@@ -242,7 +212,7 @@ export default function PlansPage() {
         {/* ─── FAQ Section ─── */}
         <section className="section-padding relative">
           <div className="section-container">
-            <div {...fadeUp} className="text-center mb-12">
+            <div className="text-center mb-12">
               <h2 className="text-2xl md:text-4xl font-extrabold gradient-text mb-4">
                 {t('faq.title')}
               </h2>
@@ -252,17 +222,12 @@ export default function PlansPage() {
               {faqs.map((faq, i) => (
                 <details
                   key={i}
-                 
-                 
-                 
-                 
-                  className="glass-card rounded-xl overflow-hidden group"
+                  className="page-card glass-card rounded-xl overflow-hidden group"
                 >
                   <summary className="px-6 py-4 text-sm font-semibold text-foreground/80 cursor-pointer hover:text-[#b8860b] transition-colors flex items-center justify-between list-none [&::-webkit-details-marker]:hidden">
                     <span>{faq.q}</span>
                     <span 
                       className="text-[#b8860b] text-xs shrink-0 ml-4"
-                     
                     >▼</span>
                   </summary>
                   <div className="px-6 pb-4">
@@ -277,12 +242,7 @@ export default function PlansPage() {
         {/* ─── Contact Section (inline) ─── */}
         <section id="contact" className="section-padding relative">
           <div className="section-container">
-            <div 
-             
-             
-             
-              className="glass-card rounded-2xl p-10 md:p-14 text-center max-w-2xl mx-auto"
-            >
+            <div className="page-card glass-card rounded-2xl p-10 md:p-14 text-center max-w-2xl mx-auto">
               <h2 className="text-2xl md:text-4xl font-extrabold gradient-text mb-4">
                 {t('services.ctaTitle')}
               </h2>

@@ -2,8 +2,8 @@
 
 import useGsapHome from '@/gsap/useGsapHome'
 import Header from '@/components/Header'
+import ScrollProgress from '@/components/ScrollProgress'
 import HeroSection from '@/components/HeroSection'
-import TrustBar from '@/components/TrustBar'
 import GlobalNetwork from '@/components/GlobalNetwork'
 import PlanCTA from '@/components/PlanCTA'
 import ServicesSection from '@/components/ServicesSection'
@@ -20,20 +20,15 @@ export default function Home() {
 
   return (
     <>
+      <ScrollProgress />
       <Header />
       <main className="relative z-10">
-        {/* Hero */}
-        <div className="section-hero">
+        {/* Hero → Global Network (无缝衔接) */}
+        <div className="section-hero relative noise-overlay">
           <HeroSection />
         </div>
 
-        {/* TrustBar */}
-        <div className="section-white border-y border-[#b8860b]/8">
-          <TrustBar />
-        </div>
-
-        {/* Global Network */}
-        <div className="section-cool">
+        <div className="section-cool" style={{ marginTop: '-2rem' }}>
           <GlobalNetwork />
         </div>
 

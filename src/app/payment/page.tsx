@@ -6,10 +6,12 @@ import { useT } from '@/i18n'
 import { useContact } from '@/components/ContactModal'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import useGsapPage from '@/gsap/useGsapPage'
 
 export default function PaymentPage() {
   const { t } = useT()
   const { open: openContact } = useContact()
+  useGsapPage()
 
   const paymentMethods = [
     {
@@ -64,13 +66,7 @@ export default function PaymentPage() {
 
   function PaymentMethodCard({ method, index }: { method: typeof paymentMethods[0]; index: number }) {
     return (
-      <div 
-       
-       
-       
-       
-        className="glass-card rounded-2xl p-8 md:p-10 relative overflow-hidden"
-      >
+      <div className="glass-card rounded-2xl p-8 md:p-10 relative overflow-hidden page-card">
         <div className={`absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br ${method.bgAccent} to-transparent rounded-full blur-[60px]`} />
 
         <div className="relative z-10">
@@ -132,26 +128,15 @@ export default function PaymentPage() {
 
           <div className="section-container relative z-10">
             {/* Breadcrumb */}
-            <div 
-             
-             
-             
-              className="mb-8"
-            >
-              <Link href="/" className="text-sm text-muted-foreground hover:text-[#b8860b] transition-colors">
-                {t('nav.home')}
+            <div className="mb-8 page-hero-badge">
+              <Link href="/" className="back-home-link">
+                <span className="arrow">←</span>
+                <span>返回主页</span>
               </Link>
-              <span className="text-sm text-muted-foreground mx-2">/</span>
-              <span className="text-sm text-foreground font-medium">{t('payment.breadcrumb')}</span>
             </div>
 
             {/* Header */}
-            <div 
-             
-             
-             
-              className="max-w-3xl mb-16"
-            >
+            <div className="max-w-3xl mb-16 page-hero-title">
               <div className="inline-flex items-center gap-2 mb-4">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 <span className="text-xs font-semibold tracking-widest text-[#b8860b] uppercase">{t('payment.badge')}</span>
@@ -173,13 +158,7 @@ export default function PaymentPage() {
             </div>
 
             {/* CTA */}
-            <div 
-             
-             
-             
-             
-              className="flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/5 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto mt-16"
-            >
+            <div className="page-cta flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/5 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto mt-16">
               <div className="inline-flex items-center gap-2 mb-4 justify-center">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 <span className="text-xs font-semibold tracking-widest text-[#b8860b] uppercase">{t('payment.badge')}</span>

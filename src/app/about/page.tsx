@@ -5,16 +5,13 @@ import Link from 'next/link'
 import { useT } from '@/i18n'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ParticleBackground from '@/components/ParticleBackground'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-}
+import dynamic from 'next/dynamic'
+const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), { ssr: false })
+import useGsapPage from '@/gsap/useGsapPage'
 
 export default function AboutPage() {
   const { t } = useT()
+  useGsapPage()
   const stats = [
     { value: t('about.stats1'), label: t('about.stats1Label') },
     { value: t('about.stats2'), label: t('about.stats2Label') },
@@ -51,25 +48,14 @@ export default function AboutPage() {
         <section className="section-padding relative overflow-hidden">
           <div className="absolute top-0 left-1/3 w-[700px] h-[700px] bg-gradient-to-br from-[#b8860b]/10 via-[#b8860b]/5 to-[#2c6e6e]/5 rounded-full blur-[120px]" />
           <div className="section-container relative z-10">
-            <div 
-             
-             
-             
-              className="mb-8"
-            >
-              <Link href="/" className="text-sm text-gray-500 hover:text-[#b8860b] transition-colors">
-                {t('nav.home')}
+            <div className="mb-8 page-hero-badge">
+              <Link href="/" className="back-home-link">
+                <span className="arrow">←</span>
+                <span>返回主页</span>
               </Link>
-              <span className="text-sm text-gray-500 mx-2">/</span>
-              <span className="text-sm text-foreground font-medium">{t('about.heroBadge')}</span>
             </div>
 
-            <div 
-             
-             
-             
-              className="max-w-3xl"
-            >
+            <div className="max-w-3xl page-hero-title">
               <div className="inline-flex items-center gap-2 mb-4">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 <span className="text-xs font-semibold tracking-widest text-[#b8860b] uppercase">{t('about.heroBadge')}</span>
@@ -78,7 +64,7 @@ export default function AboutPage() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold gradient-text mb-6 leading-tight">
                 {t('about.heroTitle')}
               </h1>
-              <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl">
+              <p className="text-base md:text-lg text-gray-400 leading-relaxed max-w-2xl page-hero-desc">
                 {t('about.heroDesc')}
               </p>
             </div>
@@ -90,11 +76,7 @@ export default function AboutPage() {
           <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-[#2c6e6e]/5 rounded-full blur-[100px]" />
           <div className="section-container relative z-10">
             <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-              <div 
-               
-               
-               
-              >
+              <div className="page-section">
                 <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#b8860b] uppercase mb-4">
                   <span className="w-6 h-px bg-[#b8860b]/50" />
                   {t('about.storyTitle')}
@@ -107,14 +89,9 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div 
-               
-               
-               
-                className="grid grid-cols-2 gap-4"
-              >
+              <div className="grid grid-cols-2 gap-4">
                 {stats.map((stat, i) => (
-                  <div key={i} className="glass-card rounded-2xl p-6 text-center">
+                  <div key={i} className="glass-card rounded-2xl p-6 text-center page-card">
                     <div className="text-3xl md:text-4xl font-extrabold gradient-text mb-1">{stat.value}</div>
                     <div className="text-xs text-gray-500">{stat.label}</div>
                   </div>
@@ -125,9 +102,9 @@ export default function AboutPage() {
         </section>
 
         {/* ─── Mission ─── */}
-        <section className="section-padding relative bg-gradient-to-b from-transparent via-[#b8860b]/[0.02] to-transparent">
+        <section className="section-padding relative bg-gradient-to-b from-transparent via-[#b8860b]/[0.02] to-transparent page-section">
           <div className="section-container">
-            <div {...fadeUp} className="text-center mb-14">
+            <div className="text-center mb-14">
               <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#b8860b] uppercase mb-4">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 {t('about.missionTitle')}
@@ -140,14 +117,7 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {missions.map((m, i) => (
-                <div 
-                  key={m.title}
-                 
-                 
-                 
-                 
-                  className="glass-card rounded-2xl p-8 text-center"
-                >
+                <div key={m.title} className="glass-card rounded-2xl p-8 text-center page-card">
                   <span className="text-4xl mb-5 block">{m.emoji}</span>
                   <h3 className="text-lg font-bold text-foreground mb-3">{m.title}</h3>
                   <p className="text-sm text-gray-400 leading-relaxed">{m.desc}</p>
@@ -158,10 +128,10 @@ export default function AboutPage() {
         </section>
 
         {/* ─── Team ─── */}
-        <section className="section-padding relative">
+        <section className="section-padding relative page-section">
           <div className="absolute top-1/2 left-1/4 w-72 h-72 bg-[#b8860b]/5 rounded-full blur-[100px]" />
           <div className="section-container relative z-10">
-            <div {...fadeUp} className="text-center mb-14">
+            <div className="text-center mb-14">
               <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#b8860b] uppercase mb-4">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 {t('about.teamTitle')}
@@ -174,14 +144,7 @@ export default function AboutPage() {
 
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               {team.map((member, i) => (
-                <div 
-                  key={member.name}
-                 
-                 
-                 
-                 
-                  className="glass-card flowing-card rounded-2xl p-8 text-center"
-                >
+                <div key={member.name} className="glass-card flowing-card rounded-2xl p-8 text-center page-card">
                   <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#b8860b]/20 to-[#2c6e6e]/20 flex items-center justify-center text-3xl mx-auto mb-5">
                     {member.emoji}
                   </div>
@@ -195,9 +158,9 @@ export default function AboutPage() {
         </section>
 
         {/* ─── Values ─── */}
-        <section className="section-padding relative bg-gradient-to-b from-transparent via-[#2c6e6e]/[0.02] to-transparent">
+        <section className="section-padding relative bg-gradient-to-b from-transparent via-[#2c6e6e]/[0.02] to-transparent page-section">
           <div className="section-container">
-            <div {...fadeUp} className="text-center mb-14">
+            <div className="text-center mb-14">
               <span className="inline-flex items-center gap-2 text-xs font-semibold tracking-widest text-[#b8860b] uppercase mb-4">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 {t('about.valuesTitle')}
@@ -210,14 +173,7 @@ export default function AboutPage() {
 
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto">
               {values.map((v, i) => (
-                <div 
-                  key={v.title}
-                 
-                 
-                 
-                 
-                  className="glass-card rounded-2xl p-6 text-center"
-                >
+                <div key={v.title} className="glass-card rounded-2xl p-6 text-center page-card">
                   <span className="text-3xl mb-4 block">{v.emoji}</span>
                   <h3 className="font-bold text-foreground text-sm mb-2">{v.title}</h3>
                   <p className="text-xs text-gray-400 leading-relaxed">{v.desc}</p>
@@ -228,14 +184,9 @@ export default function AboutPage() {
         </section>
 
         {/* ─── CTA ─── */}
-        <section className="section-padding relative">
+        <section className="section-padding relative page-section">
           <div className="section-container">
-            <div 
-             
-             
-             
-              className="flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/5 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto"
-            >
+            <div className="page-cta flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/5 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto">
               <div className="inline-flex items-center gap-2 mb-4 justify-center">
                 <span className="w-6 h-px bg-[#b8860b]/50" />
                 <span className="text-xs font-semibold tracking-widest text-[#b8860b] uppercase">{t('about.heroBadge')}</span>

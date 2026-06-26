@@ -7,11 +7,14 @@ import { useT, langNames } from '@/i18n'
 import { productT } from '@/i18n/products'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import ParticleBackground from '@/components/ParticleBackground'
+import dynamic from 'next/dynamic'
+const ParticleBackground = dynamic(() => import('@/components/ParticleBackground'), { ssr: false })
+import useGsapPage from '@/gsap/useGsapPage'
 
 export default function CategoryPage() {
   const params = useParams()
   const { t, lang } = useT()
+  useGsapPage()
   const allCategories: Record<string, { icon: string; name: string; cn: string; badges: string[]; subtitle: string; subItems: { icon: string; name: string; desc: string }[] }> = {
     'apparel': {
       icon: '👕', name: 'Apparel', cn: '服装',
@@ -259,20 +262,18 @@ export default function CategoryPage() {
         <section className="section-padding relative overflow-hidden">
           <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-[#b8860b]/10 via-[#b8860b]/5 to-[#2c6e6e]/10 rounded-full blur-[120px]" />
           <div className="section-container relative z-10">
-            <div 
-             
-             
-            >
-              <Link href="/products" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#b8860b] transition-colors mb-6">
+            <div className="page-hero-badge flex items-center gap-3">
+              <Link href="/" className="back-home-link">
+                <span className="arrow">←</span>
+                <span>返回主页</span>
+              </Link>
+              <span className="text-xs text-gray-400">/</span>
+              <Link href="/products" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-[#b8860b] transition-colors">
                 {t('nav.allCategories')}
               </Link>
             </div>
 
-            <div 
-             
-             
-             
-            >
+            <div className="page-hero-title">
               <div className="flex items-center gap-4 mb-4">
                 <span className="text-5xl">{category.icon}</span>
                 <div>
@@ -298,24 +299,15 @@ export default function CategoryPage() {
         {/* Sub-items */}
         <section className="section-padding pt-0">
           <div className="section-container">
-            <h2
-             
-             
-             
-              className="text-center text-xl md:text-2xl font-extrabold gradient-text mb-10"
-            >
+            <h2 className="text-center text-xl md:text-2xl font-extrabold gradient-text mb-10">
               {t('products.itemSubtitle')}
             </h2>
 
             <div className="max-w-4xl mx-auto space-y-4">
               {category.subItems.map((item, i) => (
-                <div 
+                <div
                   key={item.name}
-                 
-                 
-                 
-                 
-                  className="glass-card rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-4 md:gap-6 items-start"
+                  className="glass-card page-card rounded-2xl p-5 md:p-6 flex flex-col md:flex-row gap-4 md:gap-6 items-start"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#b8860b]/20 to-[#2c6e6e]/20 flex items-center justify-center text-2xl flex-shrink-0">
                     {item.icon}
@@ -336,12 +328,7 @@ export default function CategoryPage() {
         {/* Need More Categories */}
         <section className="section-padding">
           <div className="section-container">
-            <div 
-             
-             
-             
-              className="text-center"
-            >
+            <div className="page-cta text-center">
               <div className="glass rounded-2xl p-6 md:p-8 max-w-lg mx-auto">
                 <p className="text-base font-semibold text-foreground mb-2">{t('products.needMoreTitle')}</p>
                 <p className="text-sm text-gray-400 mb-5">

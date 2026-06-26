@@ -58,8 +58,8 @@ export default function Header() {
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/95 shadow-sm border-b border-gray-100' : 'bg-transparent'
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled ? 'glass shadow-sm' : 'bg-transparent'
       }`}>
         <div className="section-container flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
@@ -93,7 +93,7 @@ export default function Header() {
 
               {serviceOpen && (
                 <div onMouseLeave={() => setServiceOpen(false)}
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 bg-white rounded-2xl shadow-xl border border-gray-100 min-w-[200px] overflow-hidden">
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 glass rounded-2xl shadow-xl min-w-[220px] overflow-hidden">
                   <div className="py-2">
                     {serviceSlugs.map((s) => (
                       <Link key={s.slug} href={`/services/${s.slug}`}
