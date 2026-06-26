@@ -190,25 +190,6 @@ export default function PlansPage() {
           </div>
         </section>
 
-        {/* ─── CTA Section ─── */}
-        <section className="section-padding relative">
-          <div className="section-container">
-            <div className="page-cta flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/8 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-4xl font-extrabold gradient-text mb-4">
-                {t('plansPage.ctaTitle')}
-              </h2>
-              <p className="text-gray-400 max-w-lg mx-auto mb-8">
-                {t('plansPage.ctaDesc')}
-              </p>
-              <button onClick={openContact}
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-[#b8860b] to-[#9a7209] text-foreground font-bold px-8 py-3 rounded-xl hover:shadow-lg hover:shadow-[#b8860b]/20 transition-all"
-              >
-                {t('plansPage.ctaBtn')} →
-              →</button>
-            </div>
-          </div>
-        </section>
-
         {/* ─── FAQ Section ─── */}
         <section className="section-padding relative">
           <div className="section-container">
@@ -239,15 +220,15 @@ export default function PlansPage() {
           </div>
         </section>
 
-        {/* ─── Contact Section (inline) ─── */}
-        <section id="contact" className="section-padding relative">
+        {/* ─── CTA Section ─── */}
+        <section className="section-padding relative">
           <div className="section-container">
-            <div className="page-card glass-card rounded-2xl p-10 md:p-14 text-center max-w-2xl mx-auto">
+            <div className="page-cta flowing-card rounded-2xl p-10 md:p-14 text-center border border-[#b8860b]/20 bg-gradient-to-br from-[#b8860b]/8 via-[#2c6e6e]/5 to-transparent max-w-3xl mx-auto">
               <h2 className="text-2xl md:text-4xl font-extrabold gradient-text mb-4">
-                {t('services.ctaTitle')}
+                {t('plansPage.ctaTitle')}
               </h2>
-              <p className="text-gray-400 max-w-md mx-auto mb-8">
-                {t('services.ctaDesc')}
+              <p className="text-gray-400 max-w-lg mx-auto mb-8">
+                {t('plansPage.ctaDesc')}
               </p>
               <button onClick={openContact}
                 className="inline-flex items-center gap-2 bg-gradient-to-r from-[#b8860b] to-[#9a7209] text-foreground font-bold px-8 py-3 rounded-xl hover:shadow-lg hover:shadow-[#b8860b]/20 transition-all"

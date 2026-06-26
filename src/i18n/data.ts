@@ -390,7 +390,7 @@ const zh: Record<string, string> = {
   'services.customPackaging.title': '定制包装',
   'services.customPackaging.subtitle': 'Private Label & Packaging',
   'services.customPackaging.heroTitle': '定制 Logo 与包装方案',
-  'services.customPackaging.heroDesc': 'Custom logos and packaging to help your products stand out, with factory connections at competitive prices. 小批量个性化包装、logo印刷、产品捆绑套装，自有产线承接复杂包装需求。',
+  'services.customPackaging.heroDesc': '定制 Logo 与包装，让您的产品脱颖而出。支持小批量个性化包装、Logo 印刷、产品捆绑套装，自有产线可承接复杂包装需求，工厂直供有竞争力的价格。',
   'services.customPackaging.cta': '咨询包装方案',
 
   'services.labelsAndManuals.title': '标签与说明书',
@@ -952,7 +952,7 @@ const en: Record<string, string> = {
   'services.customPackaging.title': 'Custom Packaging',
   'services.customPackaging.subtitle': 'Private Label & Packaging',
   'services.customPackaging.heroTitle': 'Custom Logo & Packaging Solutions',
-  'services.customPackaging.heroDesc': 'Custom logos and packaging to help your products stand out, with factory connections at competitive prices. Small batch custom packaging, logo printing, product bundles. In-house line for complex needs.',
+  'services.customPackaging.heroDesc': 'Custom logos and packaging to help your products stand out. Small-batch custom packaging, logo printing, and product bundles — all at competitive factory-direct prices. In-house production line available for complex requirements.',
   'services.customPackaging.cta': 'Consult Packaging',
 
   'services.labelsAndManuals.title': 'Labels & Manuals',

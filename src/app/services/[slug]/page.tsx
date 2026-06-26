@@ -110,26 +110,6 @@ export default function ServiceDetailPage() {
           </section>
         ))}
 
-        {/* CTA */}
-        <section className="section-padding relative">
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#b8860b]/[0.03] to-transparent" />
-          <div className="section-container relative z-10 text-center">
-            <div className="page-cta">
-              <h2 className="text-2xl md:text-4xl font-extrabold text-foreground mb-4">
-                {t('services.ctaTitle')}
-              </h2>
-              <p className="text-gray-400 max-w-md mx-auto mb-8">
-                {t('services.ctaDesc')}
-              </p>
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#b8860b] to-[#9a7209] text-foreground font-bold rounded-xl text-base hover:shadow-xl hover:shadow-[#b8860b]/20 transition-all"
-              >
-                {t(`services.${key}.cta`)} →
-              </Link>
-            </div>
-          </div>
-        </section>
       </main>
 
       <Footer />

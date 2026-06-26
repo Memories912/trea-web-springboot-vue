@@ -44,6 +44,14 @@ export default function Header() {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  const handleContact = () => {
+    if (pathname === '/') {
+      scrollTo('#contact')
+    } else {
+      window.location.href = '/#contact'
+    }
+  }
+
   const navLinks = [
     { href: '/', key: 'nav.home' },
     { href: '/plans', key: 'nav.plans' },
@@ -118,7 +126,7 @@ export default function Header() {
               </Link>
             ))}
 
-            <button onClick={() => scrollTo('#contact')}
+            <button onClick={handleContact}
               className="ml-3 px-5 py-2 bg-gradient-to-r from-[#b8860b] to-[#c9981e] text-white font-semibold rounded-xl text-sm hover:shadow-lg hover:shadow-[#b8860b]/20 transition-all">
               {t('nav.contact')}
             </button>
@@ -169,7 +177,7 @@ export default function Header() {
               </button>
             )
           })}
-          <button onClick={() => scrollTo('#contact')}
+          <button onClick={handleContact}
             className="mt-2 px-8 py-3 bg-gradient-to-r from-[#b8860b] to-[#c9981e] text-white font-bold rounded-xl text-lg">
             {t('nav.contact')}
           </button>

@@ -10,8 +10,17 @@ export default function Footer() {
   const { t } = useT()
   const brandDescRef = useRef<HTMLParagraphElement>(null)
 
-  const col1Items = [t('footer.col1Item1-4'), t('footer.col1Item2-4'), t('footer.col1Item3-4'), t('footer.col1Item4-4')]
-  const col2Items = [t('footer.col2Item1-3'), t('footer.col2Item2-3'), t('footer.col2Item3-3')]
+  const col1Items = [
+    { label: t('footer.col1Item1'), href: '/plans' },
+    { label: t('footer.col1Item2'), href: '/products' },
+    { label: t('footer.col1Item3'), href: '/services/product-photography' },
+    { label: t('footer.col1Item4'), href: '/faq' },
+  ]
+  const col2Items = [
+    { label: t('footer.col2Item1'), href: '/plans#compare' },
+    { label: t('footer.col2Item2'), href: '/plans#compare' },
+    { label: t('footer.col2Item3'), href: '#' },
+  ]
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -53,8 +62,8 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/60 mb-4">{t('footer.col1Title')}</h4>
             <div className="space-y-2">
               {col1Items.map((item) => (
-                <a key={item} href="#" className="block text-xs text-gray-500 hover:text-[#b8860b] transition-colors">
-                  {item}
+                <a key={item.label} href={item.href} className="block text-xs text-gray-500 hover:text-[#b8860b] transition-colors">
+                  {item.label}
                 </a>
               ))}
             </div>
@@ -64,8 +73,8 @@ export default function Footer() {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-foreground/60 mb-4">{t('footer.col2Title')}</h4>
             <div className="space-y-2">
               {col2Items.map((item) => (
-                <a key={item} href="#" className="block text-xs text-gray-500 hover:text-[#b8860b] transition-colors">
-                  {item}
+                <a key={item.label} href={item.href} className="block text-xs text-gray-500 hover:text-[#b8860b] transition-colors">
+                  {item.label}
                 </a>
               ))}
             </div>

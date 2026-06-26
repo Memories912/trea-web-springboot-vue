@@ -488,22 +488,10 @@ a:focus:not(:focus-visible) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   🔙 BACK-TO-HOME — arrow + text, clean and minimal
+   🔙 BACK-TO-HOME — hidden as requested
    ═══════════════════════════════════════════════════════════ */
 .back-home-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: rgba(0,0,0,0.3);
-  text-decoration: none;
-  transition: color 0.25s ease, gap 0.25s ease;
-  width: fit-content;
-}
-.back-home-link:hover {
-  color: #b8860b;
-  gap: 0.5rem;
+  display: none;
 }
 .back-home-link .arrow {
   display: inline-block;
